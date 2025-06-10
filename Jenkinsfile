@@ -8,9 +8,10 @@ pipeline {
                 }
             }
         }
-        stage('1') {
+        stage('Stage-1') {
             parallel {
                 stage('Stage-1.1') {
+                    agent {label "agent-1"}
                     steps {
                         sh "echo 'first step'"
                         withMockLoad(averageDuration: 3, testFailureIgnore: false) {
@@ -29,6 +30,7 @@ pipeline {
                             }
                         }
                         stage('1.2.2') {
+                            agent {label "agent-1"}
                             steps {
                                 withMockLoad(averageDuration: 9, testFailureIgnore: false) {
                                     sh MOCK_LOAD_COMMAND
@@ -39,11 +41,10 @@ pipeline {
                 }
             }
         }
-        stage('Stage-3') {
+        stage('Test') {
             steps {
-                withMockLoad(averageDuration: 5, testFailureIgnore: false) {
-                    sh MOCK_LOAD_COMMAND
-                }
+                sh 'mvn clean test'
+                junit 'target/surefire-reports/*.xml'
             }
         }
     }
