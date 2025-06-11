@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Stage-0 now is called SUPERSTAGE!!!!!') {
+        stage('Stage-0 new name') {
             steps {
                 withMockLoad(averageDuration: 3, testFailureIgnore: false) {
                     sh MOCK_LOAD_COMMAND
