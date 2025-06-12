@@ -13,7 +13,7 @@ pipeline {
                 stage('Stage-1.1') {
                     agent {label "agent-1"}
                     steps {
-                        sh "echo 'first step'"
+                        sh "echo 'first step ON DEMO!!!!'"
                         withMockLoad(averageDuration: 3, testFailureIgnore: false) {
                             sh MOCK_LOAD_COMMAND
                         }
