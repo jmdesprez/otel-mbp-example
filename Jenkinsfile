@@ -30,7 +30,7 @@ pipeline {
                             }
                         }
                         stage('1.2.2') {
-                            // agent {label "agent-1"}
+                            agent {label "agent-1"}
                             steps {
                                 withMockLoad(averageDuration: 9, testFailureIgnore: false) {
                                     sh MOCK_LOAD_COMMAND
