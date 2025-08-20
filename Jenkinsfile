@@ -1,4 +1,7 @@
 pipeline {
+    options {
+        buildDiscarder(logRotator(daysToKeepStr: "14"))
+    }
     agent any
     stages {
         stage('Stage-0 new naming') {
